@@ -1,0 +1,1 @@
+It is advised to keep training, validation, and test data on external storage such as AWS S3.

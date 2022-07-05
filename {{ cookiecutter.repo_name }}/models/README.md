@@ -1,0 +1,1 @@
+Large model files should not be stored in the repository of the project. Instead the user is encouraged to use an external artifact repository on, for instance, AWS S3.
