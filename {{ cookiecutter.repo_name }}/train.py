@@ -7,7 +7,10 @@ import hydra
 from src.models.model_module import ModelModule
 from src.data.data_module import DataModule
 
-@hydra.main(config_path='configs', config_name='config')
+@hydra.main(
+    config_path='configs',
+    config_name='config',
+    version_base='1.1')
 def train(cfg):
     # Get the training config
     cfg = cfg['train']
@@ -23,8 +26,7 @@ def train(cfg):
         logger=logger,
         gpus=cfg.trainer.gpus,
         max_epochs=cfg.trainer.nepochs,
-        log_every_n_steps=10,
-        progress_bar_refresh_rate=5
+        log_every_n_steps=10
     )
 
     trainer.fit(model, data)
