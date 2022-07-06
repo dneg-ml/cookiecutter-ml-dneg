@@ -1,57 +1,52 @@
-{{cookiecutter.project_name}}
-==============================
+# {{cookiecutter.project_name}}
 
 {{cookiecutter.description}}
 
-Project Organization
-------------
+```
+├── LICENSE
+├── README.md               <- The top-level README.
+├── data                    <- Store limited amount of useful data here. NO CLIENT IP.
+├── docs                    <- Document project here. It is recommended to use Markdown.
+│
+├── models                  <- Trained and serialized models
+│
+├── notebooks               <- Jupyter notebooks.
+│
+├── requirements.txt        <- The requirements file.
+│
+├── setup.py                <- Project can be made pip installable
+├── src                     <- Source code for use in this project.
+│   ├── __init__.py         <- Makes src a Python module
+│   │
+│   ├── data                <- All dataset related code
+│   │   └── dataset.py      <- PyTorch compatible dataset
+│   │   └── data_module.py  <- PyTorch Lightning data module
+│   │
+│   ├── models              <- All model related code
+│   │   ├── model.py        <- Contains an example PyTorch model.
+│   │   └── model_module.py <- PyTorch Lightning model module
+│   │
+│   └── visualization       <- All visualization code
+│       └── visualize.py
+```
 
-    ├── LICENSE
-    ├── Makefile           <- Makefile with commands like `make data` or `make train`
-    ├── README.md          <- The top-level README for developers using this project.
-    ├── data
-    │   ├── external       <- Data from third party sources.
-    │   ├── interim        <- Intermediate data that has been transformed.
-    │   ├── processed      <- The final, canonical data sets for modeling.
-    │   └── raw            <- The original, immutable data dump.
-    │
-    ├── docs               <- A default Sphinx project; see sphinx-doc.org for details
-    │
-    ├── models             <- Trained and serialized models, model predictions, or model summaries
-    │
-    ├── notebooks          <- Jupyter notebooks. Naming convention is a number (for ordering),
-    │                         the creator's initials, and a short `-` delimited description, e.g.
-    │                         `1.0-jqp-initial-data-exploration`.
-    │
-    ├── references         <- Data dictionaries, manuals, and all other explanatory materials.
-    │
-    ├── reports            <- Generated analysis as HTML, PDF, LaTeX, etc.
-    │   └── figures        <- Generated graphics and figures to be used in reporting
-    │
-    ├── requirements.txt   <- The requirements file for reproducing the analysis environment, e.g.
-    │                         generated with `pip freeze > requirements.txt`
-    │
-    ├── setup.py           <- makes project pip installable (pip install -e .) so src can be imported
-    ├── src                <- Source code for use in this project.
-    │   ├── __init__.py    <- Makes src a Python module
-    │   │
-    │   ├── data           <- Scripts to download or generate data
-    │   │   └── make_dataset.py
-    │   │
-    │   ├── features       <- Scripts to turn raw data into features for modeling
-    │   │   └── build_features.py
-    │   │
-    │   ├── models         <- Scripts to train models and then use trained models to make
-    │   │   │                 predictions
-    │   │   ├── predict_model.py
-    │   │   └── train_model.py
-    │   │
-    │   └── visualization  <- Scripts to create exploratory and results oriented visualizations
-    │       └── visualize.py
-    │
-    └── tox.ini            <- tox file with settings for running tox; see tox.readthedocs.io
+## Training on FashionMNIST 
 
+This particular template contains all the code required to train a simple Convolutional Neural Network (CNN) on the FashionMNIST classification task.
+It shows the use of PyTorch, PyTorch Lightning, and Hydra. As such, it can serve as a guide for your own project.
+To get started, create the appropriate conda environment:
 
---------
+```bash
+conda env create -n fmnist -f environment.yaml
+```
 
-<p><small>Project based on the <a target="_blank" href="https://drivendata.github.io/cookiecutter-data-science/">cookiecutter data science project template</a>. #cookiecutterdatascience</small></p>
+Then train the simple CNN on the FashionMNIST classification task:
+
+```bash
+python train.py train=fashionmnist
+```
+
+### Troubleshooting
+
+- If the conda environment creation process complains about CUDA, please comment out the `cudatoolkit` requirement from `environment.yaml`.
+- If training fails due to a GPU not being found, try out the `cpu` accelerator by modifying `configs/train/fashionmnist.yaml`.
